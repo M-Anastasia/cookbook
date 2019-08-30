@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>User Details</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <!-- favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<!--<body>-->
+<body id="top">
+
+<div th:replace="menu :: menu"></div>
+
+<!-- content
+   ================================================== -->
+<div id="content-wrap" class="styles">
+    <div class="row">
+
+        <div class="col-six tab-full"><form></form></div>
+
+        <h3>Edit Recipe</h3>
+
+        <form enctype="multipart/form-data" th:action="@{/edit_recipe}" method="POST">
+
+            <fieldset>
+                <input type="hidden" th:value="${recipe_id}" name="recipe_id">
+                <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+
+                <div>
+                    <label for="nameInput">Title</label>
+                    <input class="full-width" type="text" id="nameInput" th:value="${name}" name="name">
+                </div>
+
+                <div>
+                    <label for="descriptionInput">Description</label>
+                    <input class="full-width" type="text" id="descriptionInput" th:value="${description}" name="description">
+                    <!--<textarea class="full-width" id="descriptionInput" th:value="${description}" name="description"></textarea>-->
+                </div>
+
+                <select class="full-width" name="categ">
+                    <option value="">Choose category</option>
+                    <option th:each="category : ${categories}"
+                            th:value="${category.getId()}"
+                            th:utext="${category.getName()}"/>
+                </select>
+
+                <label class="add-bottom">
+                    <input type="checkbox" name="status">
+                    <span class="label-text">Do you want to make the private recipe?</span>
+                </label>
+
+                <input class="button-primary full-width-on-mobile" type="submit" name="save" value="Save changes">
+
+            </fieldset>
+
+        </form>
+    </div> <!-- end row -->
+</div> <!-- end styles -->
+
+<!-- footer
+================================================== -->
+
+<div th:replace="buttom :: buttom"></div>
+
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<!-- Java Script
+================================================== -->
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

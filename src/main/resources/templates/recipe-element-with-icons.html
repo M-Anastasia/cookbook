@@ -1,0 +1,47 @@
+<article class="brick entry format-standard animate-this" th:fragment="recipe-element-with-icons">
+
+    <div class="entry-thumb">
+        <a th:href="'recipe/'+${recipe.getId()}" class="thumb-link">
+            <img th:src="'/images/recipes/'+${recipe.getImage_path()}" alt="building">
+        </a>
+    </div>
+
+    <div class="entry-text">
+        <div class="entry-header">
+
+            <div class="entry-meta">
+               			<span class="cat-links">
+               				<a href="#" th:text="${recipe.getCategory().getName()}"></a>
+               			</span>
+            </div>
+
+            <h1 class="entry-title"><a th:href="'recipe/'+${recipe.getId()}" th:text="${recipe.getName()}"></a></h1>
+
+            <div><form></form></div>
+
+            <!--<a href="#">-->
+                <!--<img src="/images/icons/share.png">-->
+            <!--</a>-->
+
+            <div style="text-align: center;">
+                <a href="#openModal" th:onclick="'javascript:openModal(\''+${recipe.getId()}+'\');'">
+                    <!--<input type="hidden" th:value="${recipe.getId()}" name="recipe_id">-->
+                    <img src="/images/icons/share.png">
+                </a>
+            </div>
+
+            <form th:action="@{/edit_recipe}" method="GET">
+                <input type="hidden" th:value="${recipe.getId()}" name="recipe_id">
+                <input type="image" src="/images/icons/pencil.png">
+            </form>
+
+            <form th:action="@{/my_recipes}" method="POST">
+                <input type="hidden" th:value="${recipe.getId()}" name="recipe_id">
+                <input type="image" src="/images/icons/delete.png">
+            </form>
+            <div><form></form></div>
+
+        </div>
+    </div>
+
+</article>

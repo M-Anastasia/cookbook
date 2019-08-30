@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>User Details</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <!-- favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<!--<body>-->
+<body id="top">
+
+<div th:replace="menu :: menu"></div>
+
+<!-- content
+   ================================================== -->
+<div id="content-wrap" class="styles">
+    <div class="row">
+
+        <div th:switch="${message}">
+            <div th:case="'1'">
+                <div class="alert-box ss-success hideit">
+                    <p>Success Message. Your Message Goes Here.</p>
+                    <i class="fa fa-times close"></i>
+                </div>
+            </div>
+            <div th:case="'2'">
+                <div class="alert-box ss-error hideit">
+                    <p>Error Message. Your Message Goes Here.</p>
+                    <i class="fa fa-times close"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-six tab-full"><form></form></div>
+        <div th:replace="edit_user :: edit_user"></div>
+        <div th:replace="edit_password :: edit_password"></div>
+    </div> <!-- end row -->
+</div> <!-- end styles -->
+
+<!-- footer
+================================================== -->
+
+<div th:replace="buttom :: buttom"></div>
+
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<!-- Java Script
+================================================== -->
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+
+</html>

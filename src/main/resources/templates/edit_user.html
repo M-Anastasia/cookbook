@@ -1,0 +1,24 @@
+<div class="col-six tab-full" th:fragment="edit_user">
+    <h3 th:text="'User - '+${username}"></h3>
+
+    <form th:action="@{/user_details}" method="POST">
+
+        <fieldset>
+            <div>
+                <label for="emailInput">Your email</label>
+                <input class="full-width" type="email" th:value="${email}" id="emailInput" name="email">
+            </div>
+            <div>
+                <label for="first_nameInput">Your first name</label>
+                <input class="full-width" type="text" th:value="${first_name}" id="first_nameInput" name="first_name">
+            </div>
+            <div>
+                <label for="last_nameInput">Your last name</label>
+                <input class="full-width" type="text" th:value="${last_name}" id="last_nameInput" name="last_name">
+            </div>
+            <input class="button-primary full-width-on-mobile" type="submit" name="edit" value="Edit">
+        </fieldset>
+
+    </form>
+</div>
+

@@ -1,0 +1,23 @@
+<article class="brick entry format-standard animate-this" th:fragment="recipe-element">
+
+    <div class="entry-thumb">
+        <a th:href="'recipe/'+${recipe.getId()}" class="thumb-link">
+            <img th:src="'/images/recipes/'+${recipe.getImage_path()}" alt="building">
+        </a>
+    </div>
+
+    <div class="entry-text">
+        <div class="entry-header">
+
+            <div class="entry-meta">
+               			<span class="cat-links">
+               				<a href="#" th:text="${recipe.getCategory().getName()}"></a>
+               			</span>
+            </div>
+
+            <h1 class="entry-title"><a th:href="'recipe/'+${recipe.getId()}" th:text="${recipe.getName()}"></a></h1>
+
+        </div>
+    </div>
+
+</article>
