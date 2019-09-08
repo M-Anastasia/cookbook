@@ -24,8 +24,9 @@
             <!--</a>-->
 
             <div style="text-align: center;">
-                <a href="#openModal" th:onclick="'javascript:openModal(\''+${recipe.getId()}+'\');'">
-                    <!--<input type="hidden" th:value="${recipe.getId()}" name="recipe_id">-->
+                <a href="#openModal" th:onclick="'modalBuild(\''+${recipe.getId()}+'\');'">
+
+                    <input type="hidden" th:value="${recipe.getId()}" name="recipe_id">
                     <img src="/images/icons/share.png">
                 </a>
             </div>

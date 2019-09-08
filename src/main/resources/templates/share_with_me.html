@@ -57,8 +57,8 @@
             background: rgba(0, 0, 0, 0.5); /* цвет фона */
             z-index: 99999;
             opacity: 0; /* по умолчанию модальное окно прозрачно */
-             -webkit-transition: opacity 400ms ease-in;
-             -moz-transition: opacity 400ms ease-in;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
             transition: opacity 400ms ease-in; /* анимация перехода */
             pointer-events: none; /* элемент невидим для событий мыши */
         }
@@ -91,13 +91,13 @@
             display: -webkit-flex;
             display: -ms-flexbox;
             display: flex;
-             -webkit-box-orient: vertical;
-             -webkit-box-direction: normal;
-             -webkit-flex-direction: column;
-             -ms-flex-direction: column;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
             flex-direction: column;
             background-color: #fff;
-             -webkit-background-clip: padding-box;
+            -webkit-background-clip: padding-box;
             background-clip: padding-box;
             border: 1px solid rgba(0, 0, 0, .2);
             border-radius: .3rem;
@@ -106,7 +106,7 @@
 
         @media (min-width: 768px) {
             .modal-content {
-                 -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+                -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
                 box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
             }
         }
@@ -117,13 +117,13 @@
             display: -webkit-flex;
             display: -ms-flexbox;
             display: flex;
-             -webkit-box-align: center;
-             -webkit-align-items: center;
-             -ms-flex-align: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
             align-items: center;
-             -webkit-box-pack: justify;
-             -webkit-justify-content: space-between;
-             -ms-flex-pack: justify;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
             justify-content: space-between;
             padding: 15px;
             border-bottom: 1px solid #eceeef;
@@ -161,9 +161,9 @@
         /* свойства для блока, содержащего основное содержимое окна */
         .modal-body {
             position: relative;
-             -webkit-box-flex: 1;
-             -webkit-flex: 1 1 auto;
-             -ms-flex: 1 1 auto;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
             flex: 1 1 auto;
             padding: 15px;
             overflow: auto;
@@ -190,20 +190,14 @@
             <div class="grid-sizer"></div>
 
             <div th:each="recipe : ${recipes}">
-                <!--<div th:each="category : ${categories}">-->
-                    <div th:replace="recipe-element-with-icons :: recipe-element-with-icons"></div>
-                <!--</div>-->
+                <div th:replace="recipe-element :: recipe-element"></div>
             </div>
-
-
 
         </div> <!-- end brick-wrapper -->
 
     </div> <!-- end row -->
 
 </section> <!-- end bricks -->
-
-<div th:replace="share :: share"></div>
 
 <!-- footer
 ================================================== -->
@@ -221,20 +215,7 @@
 <script src="js/jquery.appear.js"></script>
 <script src="js/main.js"></script>
 <script src="js/modal_helper.js"></script>
-<!--<script>-->
-    <!--document.addEventListener("DOMContentLoaded", function (recipe_id) {-->
-        <!--var scrollbar = document.body.clientWidth - window.innerWidth + 'px';-->
-        <!--console.log(scrollbar);-->
-        <!--document.querySelector('[href="#openModal"]').addEventListener('click', function () {-->
-            <!--document.body.style.overflow = 'hidden';-->
-            <!--document.querySelector('#openModal').style.marginLeft = scrollbar;-->
-        <!--});-->
-        <!--document.querySelector('[href="#close"]').addEventListener('click', function () {-->
-            <!--document.body.style.overflow = 'visible';-->
-            <!--document.querySelector('#openModal').style.marginLeft = '0px';-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
+
 </body>
 
 </html>

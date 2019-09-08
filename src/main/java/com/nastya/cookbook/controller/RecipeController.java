@@ -2,28 +2,22 @@ package com.nastya.cookbook.controller;
 
 import com.nastya.cookbook.model.Category;
 import com.nastya.cookbook.model.Recipe;
+import com.nastya.cookbook.model.Share;
 import com.nastya.cookbook.service.CategoryService;
 import com.nastya.cookbook.service.RecipeService;
+import com.nastya.cookbook.service.ShareService;
 import com.nastya.cookbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by fishn on 21.08.2019.
@@ -39,6 +33,9 @@ public class RecipeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ShareService shareService;
 
     @GetMapping("/add_recipe")
     public String registration(ModelMap model) {
@@ -209,5 +206,24 @@ public class RecipeController {
         model.addAttribute("username", userDetails.getUsername());
         Long id = recipeService.findByName(recipe.getName()).getId();
         return "redirect:/recipe/"+id;
+    }
+
+    @GetMapping({"/share_with_me"})
+    public String shareWithMe(ModelMap model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+
+        List<Share> shares = shareService.findByName(userDetails.getUsername());
+        List<Recipe> recipes = new ArrayList<>();
+        List<String> categories = new ArrayList<>();
+        for (int i = 0; i < shares.size(); i++) {
+            recipes.add(recipeService.findById(shares.get(i).getRecipe_id()).get());
+            categories.add(categoryService.findById(recipes.get(i).getCategory_id()).get().getName());
+            recipes.get(i).setCategory(categoryService.findByName(categories.get(i)));
+        }
+
+        model.addAttribute("recipes", recipes);
+        model.addAttribute("username", userDetails.getUsername());
+        return "share_with_me";
     }
 }

@@ -7,7 +7,26 @@
                 <a href="#close" title="Close" class="close">×</a>
             </div>
             <div class="modal-body">
-                <!--<a th:text="${recipe.getId()}"></a>-->
+                <input type="hidden" id="current_recipe_id" name="recipe_id">
+
+                    <fieldset>
+                        <div>
+                            <label for="nameInput">Username</label>
+                            <input class="full-width" type="text" id="nameInput" name="name">
+                        </div>
+
+                        <input class="button-primary full-width-on-mobile" type="submit" id="share_by_username" name="share_by_username" value="Share">
+                    </fieldset>
+
+                    <fieldset>
+                        <div>
+                            <label for="shortlinkInput">Shortlink</label>
+                            <input class="full-width" type="text" id="shortlinkInput" name="shortlink">
+                        </div>
+
+                        <input class="button-primary full-width-on-mobile" type="submit" id="share_by_shortlink" name="share_by_shortlink" value="Share">
+
+                    </fieldset>
             </div>
         </div>
     </div>

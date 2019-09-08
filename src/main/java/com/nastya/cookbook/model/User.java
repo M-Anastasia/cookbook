@@ -38,6 +38,10 @@ public class User {
     @JoinColumn(name = "user_id")
     private Recipe recipe;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "name")
+    private Share share;
+
     public Long getId() {
         return id;
     }
@@ -108,5 +112,13 @@ public class User {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public Share getShare() {
+        return share;
+    }
+
+    public void setShare(Share share) {
+        this.share = share;
     }
 }

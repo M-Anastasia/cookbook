@@ -32,6 +32,10 @@ public class Recipe {
     @OneToOne(mappedBy = "recipe")
     private Category category;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipe_id")
+    private Share share;
+
     public Long getId() {
         return id;
     }
@@ -118,5 +122,13 @@ public class Recipe {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Share getShare() {
+        return share;
+    }
+
+    public void setShare(Share share) {
+        this.share = share;
     }
 }

@@ -10,24 +10,25 @@
 
         <nav id="main-nav-wrap">
             <ul class="main-navigation sf-menu">
-                <form id="logoutForm" method="POST" th:action="@{/logout}"/>
-                <!--<p th:text="'Hello, ' + ${username} + '!'"></p>-->
-                <a onclick="document.forms['logoutForm'].submit()">Logout</a>
                 <li><a href="/user_details" title=""/><p th:text="'Hello, ' + ${username} + '!'"></p></li>
+
                 <li class="current"><a href="/" title="">Home</a></li>
+
                 <li class="has-children">
                     <a href="category.html" title="">Categories</a>
                     <ul class="sub-menu">
                         <li><a href="category.html">Wordpress</a></li>
-                        <li><a href="category.html">HTML</a></li>
-                        <li><a href="category.html">Photography</a></li>
-                        <li><a href="category.html">UI</a></li>
-                        <li><a href="category.html">Mockups</a></li>
-                        <li><a href="category.html">Branding</a></li>
                     </ul>
                 </li>
+
                 <li><a href="/add_recipe" title="">Add Recipe</a></li>
+
                 <li><a href="/my_recipes" title="">My Recipes</a></li>
+
+                <li><a href="/share_with_me" title="">Share with me</a></li>
+
+                <form id="logoutForm" method="POST" th:action="@{/logout}"/>
+                <a onclick="document.forms['logoutForm'].submit()">Logout</a>
                 <!--<li class="has-children">-->
                     <!--<a href="single-standard.html" title="">Blog</a>-->
                     <!--<ul class="sub-menu">-->
