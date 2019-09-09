@@ -91,4 +91,9 @@ public class RecipeServiceImpl implements RecipeService {
     public void delete(Recipe recipe) {
         recipeRepository.delete(recipe);
     }
+
+    @Override
+    public Recipe findByShort_link(String short_link) {
+        return recipeRepository.findByShort_link(short_link);
+    }
 }

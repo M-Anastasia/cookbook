@@ -94,6 +94,10 @@ public class UserController {
         for (int i=0; i<recipes.size(); i++){
             categories.add(categoryService.findById(recipes.get(i).getCategory_id()).get().getName());
             recipes.get(i).setCategory(categoryService.findByName(categories.get(i)));
+            if (recipes.get(i).getStatus()!=null&& recipes.get(i).getShort_link()!=null){
+                recipes.remove(i);
+                i--;
+            }
         }
 
 //        model.addAttribute("categories",categories);

@@ -3,6 +3,7 @@ package com.nastya.cookbook.controller;
 import com.nastya.cookbook.model.Category;
 import com.nastya.cookbook.model.Recipe;
 import com.nastya.cookbook.model.Share;
+import com.nastya.cookbook.model.User;
 import com.nastya.cookbook.service.CategoryService;
 import com.nastya.cookbook.service.RecipeService;
 import com.nastya.cookbook.service.ShareService;
@@ -52,8 +53,33 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}")
     public String getRecipe(@PathVariable("id") Long id, ModelMap model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
-        Recipe recipeForm = recipeService.findById(id).get();
+        User user = userService.findByUsername(userDetails.getUsername());
+
+        Recipe recipe = recipeService.findById(id).get();
+
+        model.addAttribute("path",recipe.getImage_path());
+        model.addAttribute("name",recipe.getName());
+        model.addAttribute("date",recipe.getCreation_date());
+        model.addAttribute("category","Desert");
+        model.addAttribute("description",recipe.getDescription());
+
+        if (recipe.getShort_link()!=null&&recipe.getStatus().equals("on")){
+            if (recipe.getUser_id().equals(user.getId())){
+                return "recipe";
+            }
+            else return "redirect:/";
+        }
+
+        return "recipe";
+    }
+
+    @GetMapping("/recipe/private/{shortlink}")
+    public String getRecipeByShortLink(@PathVariable("shortlink") String shortlink, ModelMap model){
+
+        Recipe recipeForm = recipeService.findByShort_link(shortlink);
 
         model.addAttribute("path",recipeForm.getImage_path());
         model.addAttribute("name",recipeForm.getName());
@@ -174,6 +200,41 @@ public class RecipeController {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
         Recipe recipe = recipeService.findById(recipe_id).get();
+
+        if (userService.findByUsername(userDetails.getUsername()).getId().equals(recipe.getUser_id())){
+
+            recipe.setName(recipeForm.getName());
+
+            recipe.setDescription(recipeForm.getDescription());
+
+            recipe.setImage_path(recipeService.saveFile(file));
+
+            recipe.setCategory_id(categ);
+
+            recipe.setUser_id(userService.findByUsername(userDetails.getUsername()).getId());
+
+            Date date = new Date();
+            recipe.setCreation_date(date);
+
+            if (recipeForm.getStatus()!=null && recipeForm.getStatus().equals("on")){
+                recipe.setStatus(recipeForm.getStatus());
+                recipe.setShort_link(recipeService.generateShortLink());
+            }
+
+            String category = categoryService.findById(categ).get().getName();
+
+            recipeService.save(recipe);
+
+            model.addAttribute("path",recipe.getImage_path());
+            model.addAttribute("name",recipe.getName());
+            model.addAttribute("date",recipe.getCreation_date());
+            model.addAttribute("category",category);
+            model.addAttribute("description",recipe.getDescription());
+
+            model.addAttribute("username", userDetails.getUsername());
+            Long id = recipeService.findByName(recipe.getName()).getId();
+            return "redirect:/recipe/"+id;
+        }
 
         recipe.setName(recipeForm.getName());
 

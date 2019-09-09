@@ -61,8 +61,8 @@
 
                 <div>
                     <label for="descriptionInput">Description</label>
-                    <input class="full-width" type="text" id="descriptionInput" th:value="${description}" name="description">
-                    <!--<textarea class="full-width" id="descriptionInput" th:value="${description}" name="description"></textarea>-->
+                    <!--<input class="full-width" type="text" id="descriptionInput" th:value="${description}" name="description">-->
+                    <textarea class="full-width" id="descriptionInput" name="description" th:text="${description}"></textarea>
                 </div>
 
                 <select class="full-width" name="categ">

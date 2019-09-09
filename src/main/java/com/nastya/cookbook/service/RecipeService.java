@@ -27,4 +27,6 @@ public interface RecipeService {
     List<Recipe> findByUser_id(Long user_id);
 
     void delete(Recipe recipe);
+
+    Recipe findByShort_link(String short_link);
 }

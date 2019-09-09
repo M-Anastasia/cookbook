@@ -55,7 +55,7 @@ public class ShareController {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
         Optional<Recipe> recipe = recipeService.findById(Long.parseLong(recipe_id));
-        String link = "http://localhost:8080/recipes/" + recipe.get().getShort_link();
+        String link = "http://localhost:8080/recipe/private/" + recipe.get().getShort_link();
 
         model.addAttribute("username", userDetails.getUsername());
         return "{\"link\":\""+link+"\"}";

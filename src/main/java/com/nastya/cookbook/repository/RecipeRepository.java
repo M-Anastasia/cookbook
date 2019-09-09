@@ -16,4 +16,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query("select r from Recipe r where r.user_id = ?1")
     List<Recipe> findByUser_id(Long user_id);
+
+    @Query("select r from Recipe r where r.short_link = ?1")
+    Recipe findByShort_link(String short_link);
 }
