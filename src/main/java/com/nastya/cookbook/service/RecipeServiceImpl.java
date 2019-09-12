@@ -31,19 +31,15 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public String saveFile(MultipartFile file) {
-        String resource = "src\\main\\resources\\static\\images\\recipes\\";
-        String resource2 = "\\images\\recipes\\";
+//        String resource = "src\\main\\resources\\static\\images\\recipes\\";
+        String resource = "uploads\\";
         InputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
-        String path = "";
-        String fn2 = "";
         String fn1 = "";
         try {
             fileInputStream = file.getInputStream();
             File f = File.createTempFile("recipe",".jpg",new File(resource));
             fn1 = f.getName();
-            fn2 = resource2 + fn1;
-            path = f.getPath();
             fileOutputStream = new FileOutputStream(f);
             int element;
             while ((element = fileInputStream.read()) != -1){
@@ -95,5 +91,28 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe findByShort_link(String short_link) {
         return recipeRepository.findByShort_link(short_link);
+    }
+
+    public static void main(String[] argv){
+        File file = new File("C:\\Users\\fishn\\Desktop\\donuts-4.jpg");
+        String resource = "uploads\\";
+        InputStream fileInputStream = null;
+        FileOutputStream fileOutputStream = null;
+        String fn1 = "";
+        try {
+            fileInputStream = new FileInputStream(file);
+            File f = File.createTempFile("recipe",".jpg",new File(resource));
+            fn1 = f.getName();
+            fileOutputStream = new FileOutputStream(f);
+            int element;
+            while ((element = fileInputStream.read()) != -1){
+                fileOutputStream.write(element);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

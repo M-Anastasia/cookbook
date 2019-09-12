@@ -2,7 +2,7 @@
 
     <div class="entry-thumb">
         <a th:href="'recipe/'+${recipe.getId()}" class="thumb-link">
-            <img th:src="'/images/recipes/'+${recipe.getImage_path()}" alt="building">
+            <img th:src="'/uploads/getimage.html?fileName='+${recipe.getImage_path()}" alt="building">
         </a>
     </div>
 
