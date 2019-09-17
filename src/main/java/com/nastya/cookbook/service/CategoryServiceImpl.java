@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by fishn on 21.08.2019.
- */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 

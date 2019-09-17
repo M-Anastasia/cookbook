@@ -2,9 +2,6 @@ package com.nastya.cookbook.model;
 
 import javax.persistence.*;
 
-/**
- * Created by fishn on 04.09.2019.
- */
 @Entity
 @Table(name = "share")
 public class Share {

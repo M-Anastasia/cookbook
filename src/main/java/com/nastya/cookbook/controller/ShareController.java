@@ -1,11 +1,7 @@
 package com.nastya.cookbook.controller;
 
-import com.nastya.cookbook.model.Recipe;
 import com.nastya.cookbook.model.Share;
-import com.nastya.cookbook.model.User;
-import com.nastya.cookbook.service.RecipeService;
 import com.nastya.cookbook.service.ShareService;
-import com.nastya.cookbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -16,12 +12,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Optional;
-
-/**
- * Created by fishn on 04.09.2019.
- */
 
 @Controller
 public class ShareController {
@@ -40,7 +30,7 @@ public class ShareController {
         shareService.save(share);
 
         model.addAttribute("username", userDetails.getUsername());
-        return "{\"status\":\"ok\"}";
+        return "{\"status\":\"You have shared your recipe with user: "+name+"\"}";
     }
 
 }

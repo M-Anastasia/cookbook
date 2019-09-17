@@ -1,15 +1,7 @@
 package com.nastya.cookbook.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
-
-/**
- * Created by fishn on 12.08.2019.
- */
 
 @Entity
 @Table(name="\"user\"")

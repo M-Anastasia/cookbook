@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Optional;
 
-/**
- * Created by fishn on 16.08.2019.
- */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -42,41 +39,4 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         userRepository.save(user);
     }
-
-//    @Override
-//    public void changePassword(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        userRepository.save(user);
-//    }
-
-    //    @Override
-//    public void setFixedUsernameFor(String username, Long id) {
-//        userRepository.setFixedUsernameFor(username,id);
-//    }
-//
-//    @Override
-//    public void setFixedEmailFor(String email, Long id) {
-//        if (!email.isEmpty()){
-//            userRepository.setFixedEmailFor(email,id);
-//        }
-//    }
-//
-//    @Override
-//    public void setFixedFirstnameFor(String first_name, Long id) {
-//        if (!first_name.isEmpty()){
-//            userRepository.setFixedFirstnameFor(first_name,id);
-//        }
-//    }
-//
-//    @Override
-//    public void setFixedLastnameFor(String last_name, Long id) {
-//        if (!last_name.isEmpty()){
-//            userRepository.setFixedLastnameFor(last_name,id);
-//        }
-//    }
-//
-//    @Override
-//    public void flush() {
-//        userRepository.flush();
-//    }
 }

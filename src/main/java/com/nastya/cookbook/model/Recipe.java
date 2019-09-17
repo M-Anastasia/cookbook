@@ -3,10 +3,6 @@ package com.nastya.cookbook.model;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by fishn on 21.08.2019.
- */
-
 @Entity
 @Table(name = "recipe")
 public class Recipe {

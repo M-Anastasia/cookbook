@@ -5,19 +5,14 @@
     <div class="row header-content">
 
         <div class="logo">
-            <a href="/">Author</a>
+            <a href="/">cookbook</a>
         </div>
 
         <nav id="main-nav-wrap">
             <ul class="main-navigation sf-menu">
-                <!--<li><a href="/user_details" title=""/><p th:text="'Hello, ' + ${username} + '!'"></p></li>-->
-
                 <li><a href="/user_details" title=""><p th:text="'Hello, ' + ${username} + '!'"></p></a></li>
 
                 <li><a href="/" title="">Home</a></li>
-
-                <!--<li class="current"><a href="/" title="">Home</a></li>-->
-
                 <li class="has-children">
                     <a href="category.html" title="">Categories</a>
                     <ul class="sub-menu">
@@ -41,28 +36,11 @@
 
                 <li><a href="/share_with_me" title="">Shared with me</a></li>
 
-                <!--<form id="logoutForm" method="POST" th:action="@{/logout}">-->
-                    <!--<li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li>-->
-                <!--</form>-->
                 <li>
                     <form id="logoutForm" method="POST" th:action="@{/logout}">
                         <a onclick="document.forms['logoutForm'].submit()">Logout</a>
                     </form>
                 </li>
-
-
-                <!--<li class="has-children">-->
-                    <!--<a href="single-standard.html" title="">Blog</a>-->
-                    <!--<ul class="sub-menu">-->
-                        <!--<li><a href="single-video.html">Video Post</a></li>-->
-                        <!--<li><a href="single-audio.html">Audio Post</a></li>-->
-                        <!--<li><a href="single-gallery.html">Gallery Post</a></li>-->
-                        <!--<li><a href="single-standard.html">Standard Post</a></li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-                <!--<li><a href="style-guide.html" title="">Styles</a></li>-->
-                <!--<li><a href="about.html" title="">About</a></li>-->
-                <!--<li><a href="contact.html" title="">Contact</a></li>-->
             </ul>
         </nav> <!-- end main-nav-wrap -->
 

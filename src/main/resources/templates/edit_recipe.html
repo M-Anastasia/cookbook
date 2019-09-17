@@ -7,7 +7,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>User Details</title>
+    <title>cookbook</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -44,7 +44,14 @@
 <div id="content-wrap" class="styles">
     <div class="row">
 
-        <!--<div class="col-six tab-full"><form></form></div>-->
+        <div th:switch="${message}">
+            <div th:case="'1'">
+                <div class="alert-box ss-error hideit">
+                    <p>Error.</p>
+                    <i class="fa fa-times close"></i>
+                </div>
+            </div>
+        </div>
 
         <h3>Edit Recipe</h3>
 

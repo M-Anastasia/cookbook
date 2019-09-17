@@ -9,20 +9,20 @@ import com.nastya.cookbook.service.RecipeService;
 import com.nastya.cookbook.service.ShareService;
 import com.nastya.cookbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Created by fishn on 21.08.2019.
- */
 @Controller
 public class RecipeController {
 
@@ -39,13 +39,12 @@ public class RecipeController {
     private ShareService shareService;
 
     @GetMapping("/add_recipe")
-    public String registration(ModelMap model) {
+    public String addRecipe(ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
         List<Category> categories = categoryService.findAll();
 
-//        model.addAttribute("categ", new Category());
         model.addAttribute("categories", categories);
         model.addAttribute("username", userDetails.getUsername());
         return "add_recipe";
@@ -111,9 +110,7 @@ public class RecipeController {
     }
 
     @PostMapping({"/add_recipe"})
-//    @RequestMapping(value="/user_details",params="edit",method= RequestMethod.POST)
     public String createRecipe(Recipe recipeForm, MultipartFile file, Long categ, ModelMap model){
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
@@ -128,15 +125,11 @@ public class RecipeController {
             model.addAttribute("message",1);
         }
 
-
         recipeForm.setImage_path(recipeService.saveFile(file));
 
         recipeForm.setCategory_id(categ);
 
-
-
         recipeForm.setUser_id(userService.findByUsername(userDetails.getUsername()).getId());
-//        recipeForm.setCategory_id(new Long(1));
         Date date = new Date();
         recipeForm.setCreation_date(date);
 
@@ -148,6 +141,7 @@ public class RecipeController {
 
         recipeService.save(recipeForm);
 
+        List<Recipe> recipes = recipeService.findAll();
         model.addAttribute("path",recipeForm.getImage_path());
         model.addAttribute("name",recipeForm.getName());
         model.addAttribute("date",recipeForm.getCreation_date());
@@ -155,7 +149,7 @@ public class RecipeController {
         model.addAttribute("description",recipeForm.getDescription());
 
         model.addAttribute("username", userDetails.getUsername());
-        Long id = recipeService.findByName(recipeForm.getName()).getId();
+        Long id = recipes.get(recipes.size()-1).getId();
         return "redirect:/recipe/"+id;
     }
 
@@ -198,7 +192,6 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.findByUser_id(userService.findByUsername(userDetails.getUsername()).getId());
         List<User> users = new ArrayList<>();
         List<String> categories = new ArrayList<>();
-//        categories.add(categoryService.findById(recipes.getCategory_id()).get().getName());
         for (int i=0; i<recipes.size(); i++){
             users.add(i,userService.findById(recipes.get(i).getUser_id()).get());
             recipes.get(i).setUser(users.get(i));
@@ -206,7 +199,6 @@ public class RecipeController {
             recipes.get(i).setCategory(categoryService.findByName(categories.get(i)));
         }
 
-//        model.addAttribute("categories",categories);
         model.addAttribute("recipes", recipes);
         model.addAttribute("username", userDetails.getUsername());
         if (recipes.size()==0){
@@ -230,6 +222,7 @@ public class RecipeController {
                 break;
             }
         }
+
         List<User> users = new ArrayList<>();
         List<String> categories = new ArrayList<>();
         for (int i=0; i<recipes.size(); i++){
@@ -264,7 +257,6 @@ public class RecipeController {
         }
 
         return "my_recipes";
-
     }
 
     @PostMapping({"/edit_recipe"})
@@ -307,39 +299,10 @@ public class RecipeController {
             model.addAttribute("username", userDetails.getUsername());
             Long id = recipeService.findByName(recipe.getName()).getId();
             return "redirect:/recipe/"+id;
+        } else {
+            model.addAttribute("message",1);
+            return "edit_recipe";
         }
-
-        recipe.setName(recipeForm.getName());
-
-        recipe.setDescription(recipeForm.getDescription());
-
-        recipe.setImage_path(recipeService.saveFile(file));
-
-        recipe.setCategory_id(categ);
-
-        recipe.setUser_id(userService.findByUsername(userDetails.getUsername()).getId());
-
-        Date date = new Date();
-        recipe.setCreation_date(date);
-
-        if (recipeForm.getStatus()!=null && recipeForm.getStatus().equals("on")){
-            recipe.setStatus(recipeForm.getStatus());
-            recipe.setShort_link(recipeService.generateShortLink());
-        }
-
-        String category = categoryService.findById(categ).get().getName();
-
-        recipeService.save(recipe);
-
-        model.addAttribute("path",recipe.getImage_path());
-        model.addAttribute("name",recipe.getName());
-        model.addAttribute("date",recipe.getCreation_date());
-        model.addAttribute("category",category);
-        model.addAttribute("description",recipe.getDescription());
-
-        model.addAttribute("username", userDetails.getUsername());
-        Long id = recipeService.findByName(recipe.getName()).getId();
-        return "redirect:/recipe/"+id;
     }
 
     @GetMapping({"/share_with_me"})

@@ -11,7 +11,7 @@
 
             <div class="entry-meta">
                			<span class="cat-links">
-                            <p id="recipe_username" th:text="${recipe.getUser().getUsername()}"></p>
+                            <p id="recipe_username" th:text="${recipe.getUser().getUsername()}"><small></small></p>
                				<a th:href="'/category/'+${recipe.getCategory().getId()}"
                                th:text="${recipe.getCategory().getName()}"></a>
                			</span>

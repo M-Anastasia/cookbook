@@ -7,7 +7,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>User Details</title>
+    <title>cookbook</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -59,30 +59,20 @@
             </div>
         </div>
 
-        <!--<div class="col-six tab-full"><form></form></div>-->
-
         <h3>Add Recipe</h3>
 
         <form enctype="multipart/form-data" th:action="@{/add_recipe}" method="POST">
 
             <fieldset>
-                <!--<form id="singleUploadForm" name="singleUploadForm">-->
                     <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
-                    <!--<button type="submit" class="primary submit-btn">Submit</button>-->
-                <!--</form>-->
                 <div>
                     <label for="nameInput">Title</label>
                     <input class="full-width" type="text" id="nameInput" name="name">
                 </div>
                 <div>
                     <label for="descriptionInput">Description</label>
-                    <!--<input class="full-width" type="text" th:value="${description}" id="descriptionInput" name="description">-->
                     <textarea class="full-width" id="descriptionInput" name="description"></textarea>
                 </div>
-                <!--<div>-->
-                    <!--<label for="statusInput">Status</label>-->
-                    <!--<input class="full-width" type="text" id="statusInput" name="status">-->
-                <!--</div>-->
 
                 <select class="full-width" name="categ">
                     <option value="">Choose category</option>

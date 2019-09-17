@@ -3,16 +3,18 @@ package com.nastya.cookbook.service;
 import com.nastya.cookbook.model.Recipe;
 import com.nastya.cookbook.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by fishn on 21.08.2019.
- */
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
@@ -31,9 +33,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public String saveFile(MultipartFile file) {
-//        String resource = "src\\main\\resources\\static\\images\\recipes\\";
         String path = System.getenv("RECIPES_IMAGES");
-        String resource = "uploads\\";
         InputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
         String fn1 = "";
@@ -94,31 +94,27 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeRepository.findByShort_link(short_link);
     }
 
-    public static void main(String[] argv){
-        File file = new File("C:\\Users\\fishn\\Desktop\\donuts-4.jpg");
-        String resource = "uploads\\";
-        InputStream fileInputStream = null;
-        FileOutputStream fileOutputStream = null;
-        String fn1 = "";
-        try {
-            fileInputStream = new FileInputStream(file);
-            File f = File.createTempFile("recipe",".jpg",new File(resource));
-            fn1 = f.getName();
-            fileOutputStream = new FileOutputStream(f);
-            int element;
-            while ((element = fileInputStream.read()) != -1){
-                fileOutputStream.write(element);
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public List<Recipe> findByCategory_id(Long category_id) {
         return recipeRepository.findByCategory_id(category_id);
+    }
+
+    @Override
+    public Page<Recipe> findPaginated(Pageable pageable, List<Recipe> recipes) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Recipe> list;
+
+        if (recipes.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, recipes.size());
+            list = recipes.subList(startItem, toIndex);
+        }
+
+        Page<Recipe> recipePage = new PageImpl<Recipe>(list, PageRequest.of(currentPage, pageSize), recipes.size());
+
+        return recipePage;
     }
 }

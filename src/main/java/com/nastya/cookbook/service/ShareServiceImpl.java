@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by fishn on 04.09.2019.
- */
 @Service
 public class ShareServiceImpl implements ShareService {
 

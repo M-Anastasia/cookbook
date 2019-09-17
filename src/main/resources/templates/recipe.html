@@ -8,7 +8,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Abstract</title>
+    <title>cookbook</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -52,7 +52,6 @@
                 <div class="content-media">
                     <div class="post-thumb">
                         <img th:src="'/uploads/getimage.html?fileName='+${path}">
-                        <!--<img src="/images/recipes/recipe3832660338600720928.jpg">-->
                     </div>
                 </div>
 
@@ -61,7 +60,7 @@
                     <h1 class="page-title" th:text="${name}"></h1>
 
                     <ul class="entry-meta">
-                        <p id="recipe_username" th:text="${recipe_username}"></p>
+                        <p id="recipe_username" th:text="${recipe_username}"><small></small></p>
                         <li class="cat"><a th:href="'/category/'+${category_id}" th:text="${category}"></a>
                     </ul>
 

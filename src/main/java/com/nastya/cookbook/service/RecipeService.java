@@ -1,15 +1,13 @@
 package com.nastya.cookbook.service;
 
-import com.nastya.cookbook.model.Category;
 import com.nastya.cookbook.model.Recipe;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by fishn on 21.08.2019.
- */
 public interface RecipeService {
 
     Recipe findByName(String name);
@@ -31,4 +29,6 @@ public interface RecipeService {
     Recipe findByShort_link(String short_link);
 
     List<Recipe> findByCategory_id(Long category_id);
+
+    Page<Recipe> findPaginated(Pageable pageable, List<Recipe> recipes);
 }

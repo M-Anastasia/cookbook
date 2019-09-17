@@ -7,7 +7,7 @@
    <!--- basic page needs
    ================================================== -->
    <meta charset="utf-8">
-	<title>Abstract</title>
+	<title>cookbook</title>
 	<meta name="description" content="">  
 	<meta name="author" content="">
 
@@ -57,10 +57,8 @@
 
 			 <div class="grid-sizer"></div>
 
-			 <div th:each="recipe : ${recipes}">
-				 <!--<div th:each="category : ${categories}">-->
+			 <div th:each="recipe : ${recipePage}">
 					 <div th:replace="recipe-element :: recipe-element"></div>
-				 <!--</div>-->
 			 </div>
 
 
@@ -70,20 +68,10 @@
    	</div> <!-- end row -->
 
    	<div class="row">
-   		
-   		<nav class="pagination">
-		      <span class="page-numbers prev inactive">Prev</span>
-		   	<span class="page-numbers current">1</span>
-		   	<a href="#" class="page-numbers">2</a>
-		      <a href="#" class="page-numbers">3</a>
-		      <a href="#" class="page-numbers">4</a>
-		      <a href="#" class="page-numbers">5</a>
-		      <a href="#" class="page-numbers">6</a>
-		      <a href="#" class="page-numbers">7</a>
-		      <a href="#" class="page-numbers">8</a>
-		      <a href="#" class="page-numbers">9</a>
-		   	<a href="#" class="page-numbers next">Next</a>
-	      </nav>
+		<nav  class="pagination">
+			<a th:if="${recipePage.totalPages > 0}" class="page-numbers" th:href="@{/(size=${recipePage.size}, page=${pageNumber})}"
+			   th:text="${pageNumber}"  th:each="pageNumber : ${pageNumbers}"></a>
+		</nav>
 
    	</div>
 

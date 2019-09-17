@@ -7,7 +7,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Abstract</title>
+    <title>cookbook</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -199,9 +199,7 @@
             <div class="grid-sizer"></div>
 
             <div th:each="recipe : ${recipes}">
-                <!--<div th:each="category : ${categories}">-->
                     <div th:replace="recipe-element-with-icons :: recipe-element-with-icons"></div>
-                <!--</div>-->
             </div>
 
 
@@ -230,20 +228,6 @@
 <script src="js/jquery.appear.js"></script>
 <script src="js/main.js"></script>
 <script src="js/modal_helper.js"></script>
-<!--<script>-->
-    <!--document.addEventListener("DOMContentLoaded", function (recipe_id) {-->
-        <!--var scrollbar = document.body.clientWidth - window.innerWidth + 'px';-->
-        <!--console.log(scrollbar);-->
-        <!--document.querySelector('[href="#openModal"]').addEventListener('click', function () {-->
-            <!--document.body.style.overflow = 'hidden';-->
-            <!--document.querySelector('#openModal').style.marginLeft = scrollbar;-->
-        <!--});-->
-        <!--document.querySelector('[href="#close"]').addEventListener('click', function () {-->
-            <!--document.body.style.overflow = 'visible';-->
-            <!--document.querySelector('#openModal').style.marginLeft = '0px';-->
-        <!--});-->
-    <!--});-->
-<!--</script>-->
 </body>
 
 </html>

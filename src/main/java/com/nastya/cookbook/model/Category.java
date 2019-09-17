@@ -1,12 +1,6 @@
 package com.nastya.cookbook.model;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import javax.persistence.*;
-
-/**
- * Created by fishn on 21.08.2019.
- */
 
 @Entity
 @Table(name = "category")

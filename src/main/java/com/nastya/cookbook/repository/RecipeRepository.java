@@ -5,11 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
-/**
- * Created by fishn on 21.08.2019.
- */
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     Recipe findByName(String name);
