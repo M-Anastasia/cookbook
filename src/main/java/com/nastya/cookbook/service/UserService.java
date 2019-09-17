@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UserService {
 
     User findByUsername(String username);
-//    Optional<User> findById(Long id);
+    Optional<User> findById(Long id);
     void save(User user);
     void update(User user);
 //    void changePassword(User user);

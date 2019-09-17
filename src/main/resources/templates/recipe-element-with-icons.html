@@ -11,7 +11,8 @@
 
             <div class="entry-meta">
                			<span class="cat-links">
-               				<a href="#" th:text="${recipe.getCategory().getName()}"></a>
+                            <p id="recipe_username" th:text="${recipe.getUser().getUsername()}"></p>
+               				<a th:href="'/category/'+${recipe.getCategory().getId()}" th:text="${recipe.getCategory().getName()}"></a>
                			</span>
             </div>
 
@@ -24,8 +25,11 @@
             <!--</a>-->
 
             <div style="text-align: center;">
-                <a href="#openModal" th:onclick="'modalBuild(\''+${recipe.getId()}+'\');'">
-
+                <!--<a href="#openModal" th:onclick="'modalBuild(\''+${recipe.getId()}+'\',\''+[[${recipe.getShort_link()}]]+'\');'">-->
+                <!--<a href="#openModal" th:data1="${recipe.getId()}"-->
+                <a href="#openModal" th:onclick="modalBuild([[${recipe.getId()}]],[[${recipe.getShort_link()}]])">
+                   <!--th:data2="${recipe.getShort_link()}" th:onload="'modalBuild(\''+data1+'\',\''+data2+'\');'">-->
+                    <input type="hidden" th:value="${recipe.getShort_link()}" name="shortlink">
                     <input type="hidden" th:value="${recipe.getId()}" name="recipe_id">
                     <img src="/images/icons/share.png">
                 </a>

@@ -19,4 +19,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query("select r from Recipe r where r.short_link = ?1")
     Recipe findByShort_link(String short_link);
+
+    @Query("select r from Recipe r where r.category_id = ?1")
+    List<Recipe> findByCategory_id(Long category_id);
 }

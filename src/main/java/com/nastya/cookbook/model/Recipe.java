@@ -16,6 +16,8 @@ public class Recipe {
     private Long id;
 
     private String name;
+
+    @Column(length = 65535, columnDefinition = "text")
     private String description;
 
     private Long user_id;

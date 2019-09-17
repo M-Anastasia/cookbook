@@ -29,11 +29,6 @@ public class ShareController {
     @Autowired
     private ShareService shareService;
 
-    @Autowired
-    private RecipeService recipeService;
-
-
-
     @RequestMapping(value="/share_recipe_by_username",method= RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String shareByUsername(String name, String recipe_id, ModelMap model){
@@ -48,16 +43,4 @@ public class ShareController {
         return "{\"status\":\"ok\"}";
     }
 
-    @RequestMapping(value="/share_recipe_by_shortlink",method= RequestMethod.POST,  produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String shareByShortLink(String recipe_id, ModelMap model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) auth.getPrincipal();
-
-        Optional<Recipe> recipe = recipeService.findById(Long.parseLong(recipe_id));
-        String link = "http://localhost:8080/recipe/private/" + recipe.get().getShort_link();
-
-        model.addAttribute("username", userDetails.getUsername());
-        return "{\"link\":\""+link+"\"}";
-    }
 }

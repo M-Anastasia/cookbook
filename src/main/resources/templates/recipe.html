@@ -61,11 +61,11 @@
                     <h1 class="page-title" th:text="${name}"></h1>
 
                     <ul class="entry-meta">
-                        <li class="date" th:datetime="${date}"></li>
-                        <li class="cat"><a href="" th:text="${category}"></a>
+                        <p id="recipe_username" th:text="${recipe_username}"></p>
+                        <li class="cat"><a th:href="'/category/'+${category_id}" th:text="${category}"></a>
                     </ul>
 
-                    <p th:text="${description}"></p>
+                    <p id="description" th:text="${description}"></p>
 
                 </div> <!-- end entry-primary -->
 

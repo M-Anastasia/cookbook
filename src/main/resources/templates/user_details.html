@@ -47,19 +47,19 @@
         <div th:switch="${message}">
             <div th:case="'1'">
                 <div class="alert-box ss-success hideit">
-                    <p>Success Message. Your Message Goes Here.</p>
+                    <p>Success.</p>
                     <i class="fa fa-times close"></i>
                 </div>
             </div>
             <div th:case="'2'">
                 <div class="alert-box ss-error hideit">
-                    <p>Error Message. Your Message Goes Here.</p>
+                    <p>Error.</p>
                     <i class="fa fa-times close"></i>
                 </div>
             </div>
         </div>
 
-        <div class="col-six tab-full"><form></form></div>
+        <!--<div class="col-six tab-full"><form></form></div>-->
         <div th:replace="edit_user :: edit_user"></div>
         <div th:replace="edit_password :: edit_password"></div>
     </div> <!-- end row -->

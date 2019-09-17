@@ -32,13 +32,14 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public String saveFile(MultipartFile file) {
 //        String resource = "src\\main\\resources\\static\\images\\recipes\\";
+        String path = System.getenv("RECIPES_IMAGES");
         String resource = "uploads\\";
         InputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
         String fn1 = "";
         try {
             fileInputStream = file.getInputStream();
-            File f = File.createTempFile("recipe",".jpg",new File(resource));
+            File f = File.createTempFile("recipe",".jpg",new File(path));
             fn1 = f.getName();
             fileOutputStream = new FileOutputStream(f);
             int element;
@@ -114,5 +115,10 @@ public class RecipeServiceImpl implements RecipeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Recipe> findByCategory_id(Long category_id) {
+        return recipeRepository.findByCategory_id(category_id);
     }
 }

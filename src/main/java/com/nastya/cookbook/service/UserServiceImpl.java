@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-//    @Override
-//    public Optional<User> findById(Long id) {
-//        return userRepository.findById(id);
-//    }
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
 
     @Override
     public void save(User user) {

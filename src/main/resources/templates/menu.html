@@ -10,14 +10,28 @@
 
         <nav id="main-nav-wrap">
             <ul class="main-navigation sf-menu">
-                <li><a href="/user_details" title=""/><p th:text="'Hello, ' + ${username} + '!'"></p></li>
+                <!--<li><a href="/user_details" title=""/><p th:text="'Hello, ' + ${username} + '!'"></p></li>-->
 
-                <li class="current"><a href="/" title="">Home</a></li>
+                <li><a href="/user_details" title=""><p th:text="'Hello, ' + ${username} + '!'"></p></a></li>
+
+                <li><a href="/" title="">Home</a></li>
+
+                <!--<li class="current"><a href="/" title="">Home</a></li>-->
 
                 <li class="has-children">
                     <a href="category.html" title="">Categories</a>
                     <ul class="sub-menu">
-                        <li><a href="category.html">Wordpress</a></li>
+                        <li><a href="/category/1">Salads</a></li>
+                        <li><a href="/category/2">Soups</a></li>
+                        <li><a href="/category/3">Snacks</a></li>
+                        <li><a href="/category/4">Main</a></li>
+                        <li><a href="/category/5">Meat</a></li>
+                        <li><a href="/category/6">Fish</a></li>
+                        <li><a href="/category/7">Vegetarian</a></li>
+                        <li><a href="/category/8">Sauces</a></li>
+                        <li><a href="/category/9">Deserts</a></li>
+                        <li><a href="/category/10">Italian</a></li>
+
                     </ul>
                 </li>
 
@@ -25,10 +39,18 @@
 
                 <li><a href="/my_recipes" title="">My Recipes</a></li>
 
-                <li><a href="/share_with_me" title="">Share with me</a></li>
+                <li><a href="/share_with_me" title="">Shared with me</a></li>
 
-                <form id="logoutForm" method="POST" th:action="@{/logout}"/>
-                <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+                <!--<form id="logoutForm" method="POST" th:action="@{/logout}">-->
+                    <!--<li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li>-->
+                <!--</form>-->
+                <li>
+                    <form id="logoutForm" method="POST" th:action="@{/logout}">
+                        <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+                    </form>
+                </li>
+
+
                 <!--<li class="has-children">-->
                     <!--<a href="single-standard.html" title="">Blog</a>-->
                     <!--<ul class="sub-menu">-->

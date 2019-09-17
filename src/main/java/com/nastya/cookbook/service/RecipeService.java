@@ -29,4 +29,6 @@ public interface RecipeService {
     void delete(Recipe recipe);
 
     Recipe findByShort_link(String short_link);
+
+    List<Recipe> findByCategory_id(Long category_id);
 }

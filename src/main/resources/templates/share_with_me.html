@@ -184,6 +184,15 @@
 
     <div class="row masonry">
 
+        <div th:switch="${message}">
+            <div th:case="'2'">
+                <div class="alert-box ss-error hideit">
+                    <p>There are no recipes yet.</p>
+                </div>
+            </div>
+        </div>
+
+
         <!-- brick-wrapper -->
         <div class="bricks-wrapper">
 

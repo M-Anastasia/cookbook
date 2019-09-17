@@ -89,11 +89,15 @@ public class UserController {
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
         List<Recipe> recipes = recipeService.findAll();
-
-        List<String> categories = new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        List<Category> categories = new ArrayList<>();
         for (int i=0; i<recipes.size(); i++){
-            categories.add(categoryService.findById(recipes.get(i).getCategory_id()).get().getName());
-            recipes.get(i).setCategory(categoryService.findByName(categories.get(i)));
+            users.add(i,userService.findById(recipes.get(i).getUser_id()).get());
+            recipes.get(i).setUser(users.get(i));
+            categories.add(i,categoryService.findById(recipes.get(i).getCategory_id()).get());
+//            categories.add(categoryService.findById(recipes.get(i).getCategory_id()).get().getName());
+//            recipes.get(i).setCategory(categoryService.findByName(categories.get(i)));
+            recipes.get(i).setCategory(categories.get(i));
             if (recipes.get(i).getStatus()!=null&& recipes.get(i).getShort_link()!=null){
                 recipes.remove(i);
                 i--;
@@ -103,6 +107,9 @@ public class UserController {
 //        model.addAttribute("categories",categories);
         model.addAttribute("recipes", recipes);
         model.addAttribute("username", userDetails.getUsername());
+        if (recipes.size()==0){
+            model.addAttribute("message",2);
+        }
         return "index";
     }
 
