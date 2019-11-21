@@ -67,12 +67,12 @@ public class UserController {
         List<Recipe> recipes = recipeService.findAll();
         List<User> users = new ArrayList<>();
         List<Category> categories = new ArrayList<>();
-        for (int i=0; i<recipes.size(); i++){
-            users.add(i,userService.findById(recipes.get(i).getUser_id()).get());
+        for (int i = 0; i < recipes.size(); i++) {
+            users.add(i, userService.findById(recipes.get(i).getUser_id()).get());
             recipes.get(i).setUser(users.get(i));
-            categories.add(i,categoryService.findById(recipes.get(i).getCategory_id()).get());
+            categories.add(i, categoryService.findById(recipes.get(i).getCategory_id()).get());
             recipes.get(i).setCategory(categories.get(i));
-            if (recipes.get(i).getStatus()!=null&& recipes.get(i).getShort_link()!=null){
+            if (recipes.get(i).getStatus() != null && recipes.get(i).getShort_link() != null) {
                 recipes.remove(i);
                 i--;
             }
@@ -94,8 +94,8 @@ public class UserController {
         }
 
         model.addAttribute("username", userDetails.getUsername());
-        if (recipes.size()==0){
-            model.addAttribute("message",2);
+        if (recipes.size() == 0) {
+            model.addAttribute("message", 2);
         }
         return "index";
     }
@@ -115,21 +115,21 @@ public class UserController {
         return "user_details";
     }
 
-    @RequestMapping(value="/user_details",params="edit",method= RequestMethod.POST)
-    public String editUser(String email, String first_name, String last_name, ModelMap model){
+    @RequestMapping(value = "/user_details", params = "edit", method = RequestMethod.POST)
+    public String editUser(String email, String first_name, String last_name, ModelMap model) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
         User user = userService.findByUsername(userDetails.getUsername());
 
-        if (email!=null && !email.isEmpty()){
+        if (email != null && !email.isEmpty()) {
             user.setEmail(email);
         }
-        if (first_name!=null && !first_name.isEmpty()){
+        if (first_name != null && !first_name.isEmpty()) {
             user.setFirst_name(first_name);
         }
-        if (last_name!=null && !last_name.isEmpty()){
+        if (last_name != null && !last_name.isEmpty()) {
             user.setLast_name(last_name);
         }
         userService.update(user);
@@ -142,8 +142,8 @@ public class UserController {
         return "user_details";
     }
 
-    @RequestMapping(value="/user_details",params="change_password",method= RequestMethod.POST)
-    public String updatePassword(String password, String new_password, String confirm_password, String username, ModelMap model){
+    @RequestMapping(value = "/user_details", params = "change_password", method = RequestMethod.POST)
+    public String updatePassword(String password, String new_password, String confirm_password, String username, ModelMap model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
 
@@ -151,13 +151,13 @@ public class UserController {
 
         User user = userService.findByUsername(userDetails.getUsername());
 
-        if (encoder.matches(password, user.getPassword()) && new_password.equals(confirm_password)){
+        if (encoder.matches(password, user.getPassword()) && new_password.equals(confirm_password)) {
             User new_user = userService.findByUsername(username);
             new_user.setPassword(encoder.encode(new_password));
             userService.update(new_user);
-            model.addAttribute("message",1);
+            model.addAttribute("message", 1);
         } else {
-            model.addAttribute("message",2);
+            model.addAttribute("message", 2);
         }
 
         model.addAttribute("username", user.getUsername());

@@ -30,7 +30,7 @@ public class Recipe {
     @OneToOne(mappedBy = "recipe")
     private Category category;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "recipe_id")
     private Share share;
 

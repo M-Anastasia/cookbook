@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Share {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -16,10 +16,11 @@ public class Share {
     @OneToOne(mappedBy = "share")
     private User user;
 
-    @OneToOne(mappedBy = "share")
+    @OneToOne(mappedBy = "share", cascade = CascadeType.REMOVE, optional = true)
     private Recipe recipe;
 
-    public Share(){}
+    public Share() {
+    }
 
     public Share(String name, Long recipe_id) {
         this.name = name;

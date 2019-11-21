@@ -8,13 +8,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class CookbookApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(CookbookApplication.class);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(CookbookApplication.class);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(CookbookApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CookbookApplication.class, args);
+    }
 
 }

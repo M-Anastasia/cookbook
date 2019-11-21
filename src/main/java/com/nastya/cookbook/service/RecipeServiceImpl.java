@@ -39,11 +39,11 @@ public class RecipeServiceImpl implements RecipeService {
         String fn1 = "";
         try {
             fileInputStream = file.getInputStream();
-            File f = File.createTempFile("recipe",".jpg",new File(path));
+            File f = File.createTempFile("recipe", ".jpg", new File(path));
             fn1 = f.getName();
             fileOutputStream = new FileOutputStream(f);
             int element;
-            while ((element = fileInputStream.read()) != -1){
+            while ((element = fileInputStream.read()) != -1) {
                 fileOutputStream.write(element);
             }
 
@@ -61,8 +61,8 @@ public class RecipeServiceImpl implements RecipeService {
         char[] b = a.toCharArray();
         String sl = "";
 
-        for (int i=0; i<4; i++){
-            int tmp = (int)(Math.random()*16);
+        for (int i = 0; i < 4; i++) {
+            int tmp = (int) (Math.random() * 16);
             sl += b[tmp];
         }
 

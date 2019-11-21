@@ -10,4 +10,7 @@ public interface ShareRepository extends JpaRepository<Share, Long> {
 
     @Query("select s from Share s where s.name = ?1")
     List<Share> findByName(String name);
+
+    @Query("select s from Share s where s.recipe_id = ?1")
+    List<Share> findByRecipe_id(Long recipe_id);
 }

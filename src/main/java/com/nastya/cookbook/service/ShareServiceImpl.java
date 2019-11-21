@@ -22,4 +22,15 @@ public class ShareServiceImpl implements ShareService {
     public void save(Share share) {
         shareRepository.save(share);
     }
+
+    @Override
+    public List<Share> findByRecipe_id(Long recipe_id) {
+        return shareRepository.findByRecipe_id(recipe_id);
+    }
+
+    @Override
+    public void delete(Share share) {
+        shareRepository.delete(share);
+    }
+
 }

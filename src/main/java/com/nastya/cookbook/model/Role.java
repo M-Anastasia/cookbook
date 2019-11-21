@@ -1,5 +1,5 @@
 package com.nastya.cookbook.model;
 
-public enum  Role{
+public enum Role {
     USER
 }
