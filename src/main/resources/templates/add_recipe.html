@@ -2,6 +2,7 @@
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_.." rel="stylesheet" type="text/css" />
 <head>
 
     <!--- basic page needs
@@ -31,6 +32,8 @@
      ================================================== -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -107,6 +110,16 @@
 <script src="js/plugins.js"></script>
 <script src="js/jquery.appear.js"></script>
 <script src="js/main.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+<script>
+    new FroalaEditor('textarea', {
+        pluginsEnabled: ['align','charCounter','codeBeautifier','colors',
+            'draggable','fontAwesome','fontFamily','fontSize',
+            'lineBreaker','lineHeight',
+            'link','lists','paragraphFormat','paragraphStyle']
+    });
+</script>
 
 </body>
 
