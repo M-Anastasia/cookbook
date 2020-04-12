@@ -16,7 +16,7 @@ This is a service where you can create your own recipe book. You can post recipe
 Also i used templates from https://www.free-css.com/free-css-templates
 # How to launch
 To launch this project you need to have jdk 8, maven, PostgreSQL on your machine.
-1) run db_init.sql to create data base stucture for this application;
+1) run cookbook/src/main/resources/db/db_init.sql to create data base stucture for this application;
 2) run project with maven: 
 ```sh
 mvn spring-boot:run
