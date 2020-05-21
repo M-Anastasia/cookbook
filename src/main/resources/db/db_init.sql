@@ -1,5 +1,3 @@
-CREATE DATABASE cookbook_db WITH OWNER = postgres;
-
 CREATE SEQUENCE public.category_id_seq
   INCREMENT 1
   MINVALUE 1
