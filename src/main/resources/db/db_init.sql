@@ -1,5 +1,41 @@
 CREATE DATABASE cookbook_db WITH OWNER = postgres;
 
+CREATE SEQUENCE public.category_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 10
+  CACHE 1;
+ALTER TABLE public.category_id_seq
+  OWNER TO postgres;
+
+CREATE SEQUENCE public.recipe_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.recipe_id_seq
+  OWNER TO postgres;
+
+CREATE SEQUENCE public.share_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.share_id_seq
+  OWNER TO postgres;
+
+CREATE SEQUENCE public.user_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 2
+  CACHE 1;
+ALTER TABLE public.user_id_seq
+  OWNER TO postgres;
+
 CREATE TABLE public.share
 (
   id bigint NOT NULL DEFAULT nextval('share_id_seq'::regclass),
