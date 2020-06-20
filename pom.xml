@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.nastya</groupId>
 	<artifactId>cookbook</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>cookbook</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Cookbook API with use of Spring Boot, PostgreSql and Docker</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -74,22 +74,6 @@
 					<addResources>true</addResources>
 				</configuration>
 			</plugin>
-
-			<!--<plugin>-->
-				<!--<artifactId>maven-resources-plugin</artifactId>-->
-				<!--<version>2.6</version>-->
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<configuration>-->
-							<!--<configuration>-->
-								<!--<addResources>true</addResources>-->
-							<!--</configuration>-->
-						<!--</configuration>-->
-					<!--</execution>-->
-				<!--</executions>-->
-			<!--</plugin>-->
 		</plugins>
 	</build>
-
-
 </project>
