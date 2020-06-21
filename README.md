@@ -21,3 +21,25 @@ To launch this project you need to have jdk 8, maven, PostgreSQL on your machine
 ```sh
 mvn spring-boot:run
 ```
+
+# Launch with Docker
+To launch this project with Docker, you need to have git and Docker installed
+1) Clone this project to your machine
+```sh
+git clone https://github.com/M-Anastasia/cookbook.git
+```
+2) Go to cookbook/resources/db/
+3) Start database in docker
+```sh
+docker build -t cookbook-postgres-image
+docker run --name cookbook-postgres-container -p 5432:5432 cookbook-postgres-image
+```
+4) Build jar with maven
+```sh
+mvn clean package
+```
+5) Go to root directory of cookbook app and run this application in docker
+```sh
+docker build -t cookbook-image
+docker run --name cookbook-container -v ~/uploads:/opt/uploads -p 8080:8080 cookbook-image
+```
