@@ -31,7 +31,7 @@ git clone https://github.com/M-Anastasia/cookbook.git
 2) Go to cookbook/resources/db/
 3) Start database in docker
 ```sh
-docker build -t cookbook-postgres-image
+docker build -t cookbook-postgres-image .
 docker run --name cookbook-postgres-container -p 5432:5432 cookbook-postgres-image
 ```
 4) Build jar with maven
@@ -40,6 +40,6 @@ mvn clean package
 ```
 5) Go to root directory of cookbook app and run this application in docker
 ```sh
-docker build -t cookbook-image
+docker build -t cookbook-image .
 docker run --name cookbook-container -v ~/uploads:/opt/uploads -p 8080:8080 cookbook-image
 ```
